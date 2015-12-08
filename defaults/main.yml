@@ -1,0 +1,25 @@
+---
+#
+# user-configurable defaults
+#
+
+# should be one of the jdk-keys below
+java_version: jdk8
+
+jdk:
+  jdk7:
+    version: 1.7.0_80
+    tarball:
+      file: jdk-7u80-linux-x64.tar.gz
+      url:  http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz
+  jdk8:
+    version: 1.8.0_65
+    tarball:
+      file: jdk-8u65-linux-x64.tar.gz
+      url:  http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-x64.tar.gz
+  owner: vagrant
+  group: vagrant
+  cur_dir: "{{ lookup('pipe','pwd') }}"
+  dir:
+    tmp: /tmp
+    install: /home/vagrant/sw

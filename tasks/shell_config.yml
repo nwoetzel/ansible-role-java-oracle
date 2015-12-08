@@ -1,0 +1,22 @@
+---
+- name: add JAVA_HOME comment to shell profile
+  become:      yes
+  become_user: "{{ jdk.owner }}"
+  lineinfile:
+    dest:        "/home/{{ jdk.owner }}/.profile"
+    backup:      yes
+    state:       present
+    insertafter: EOF
+    line:        "# set JAVA_HOME so it includes ansible install jdk"
+    regexp:      "^# set JAVA_HOME so.+$"
+
+- name: add JAVA_HOME code to shell profile
+  become:      yes
+  become_user: "{{ jdk.owner }}"
+  lineinfile:
+    dest:        "/home/{{ jdk.owner }}/.profile"
+    backup:      yes
+    state:       present
+    insertafter: "^# set JAVA_HOME so.+$"
+    line:        "if [ -d \"{{jdk.dir.install}}/jdk/current\" ] ; then export JAVA_HOME=\"{{jdk.dir.install}}/jdk/current\"; fi"
+    regexp: "^if.+ ; then export JAVA_HOME.+; fi$"
