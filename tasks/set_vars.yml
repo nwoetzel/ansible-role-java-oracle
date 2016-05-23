@@ -1,0 +1,13 @@
+---
+- name: set java vars from defaults or settings
+  set_fact:
+    java_update: "{{ java_udapte | default( jdk_defaults.versions[java_version].update ) }}"
+    jave_build:  "{{ java_build  | default( jdk_defaults.versions[java_version].build ) }}"
+    java_arch:   "{{ java_arch   | default( jdk_defaults.archmap[ansible_architecture] ) }}"
+    java_os:     "{{ java_os     | default( jdk_defaults.osmap[ansible_system] ) }}"
+    java_url:    "{{ jdk_defaults.versions[java_version].url }}"
+
+- name: set java download url
+  set_fact:
+    java_file_tar: "{{ java_product }}-{{ java_version }}u{{ java_update ) }}-{{ java_os }}-{{ java_arch }}.tar.gz"
+    java_download_url: "{{ java.url }}/{{ java_version }}u{{ java_update }}-{{ java_build }}/{{ java_file_tar }}"

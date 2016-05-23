@@ -1,76 +1,23 @@
 ---
-- name: Check user exists
-  user: name={{jdk.owner}} state=present
-  tags: jdk_setup
+- include: set_vars.yml
 
-- name: Create temporary directory
-  shell: mktemp -d
-  register: mktemp_dir
-  tags: jdk_setup
-  when: jdk.dir.tmp is not defined
-
-- name: set tempdir from vars
-  set_fact:
-    tempdir: "{{ jdk.dir.tmp }}"
-  when: jdk.dir.tmp is defined
-  tags: jdk_setup
-
-- name: set tempdir from mktemp
-  set_fact:
-    tempdir: "{{ mktemp_dir.stdout }}"
-  when: mktemp_dir.stdout is defined
-  tags: jdk_setup
-
-- name: Download jdk on 'master' if we don't have it
-  connection: local
-  become: true
-  get_url:
-    url: "{{ jdk[java_version].tarball.url }}"
-    dest: "{{ jdk.cur_dir }}/downloads/{{ jdk[java_version].tarball.file }}"
-    headers: "Cookie:oraclelicense=accept-securebackup-cookie"
-    force: no
-  tags: jdk_setup
-
-- name: Copy jdk into place
-  copy:
-    src:   "{{ jdk.cur_dir }}/downloads/{{ jdk[java_version].tarball.file }}"
-    dest:  "{{ tempdir }}/{{ jdk[java_version].tarball.file }}"
-    owner: "{{ jdk.owner }}"
-    group: "{{ jdk.group }}"
-    mode:  "0644"
-  register: jdk_download
-  tags: jdk_setup
+- include: download_to_master.yml
 
 - name: Create install directory
   file:
-    dest: "{{jdk.dir.install}}/jdk/{{ jdk[java_version].version }}"
+    dest: "{{ java_install_dir }}"
     state: directory
-    owner: "{{jdk.owner}}"
-    group: "{{jdk.group}}"
-  become : yes
   when: jdk_download.changed
   tags: jdk_setup
 
-- name: Extract archive
-  command: tar xzf {{ tempdir }}/{{ jdk[java_version].tarball.file }} -C {{jdk.dir.install}}/jdk/{{ jdk[java_version].version }} --strip-components=1
-  when: jdk_download.changed
-  tags: jdk_setup
-
-- name: Change archive ownership
-  file: path={{jdk.dir.install}}/jdk/{{ jdk[java_version].version }} owner={{ jdk.owner }} group={{ jdk.group }} state=directory recurse=yes
-  when: jdk_download.changed
-  tags: jdk_setup
-
-- name: link 'current'
-  file:
-    src: "{{jdk.dir.install}}/jdk/{{ jdk[java_version].version }}"
-    dest: "{{jdk.dir.install}}/jdk/current"
-    owner: "{{ jdk.owner }}"
-    group: "{{ jdk.group }}"
-    state: link
-    force: yes
-  tags: jdk_setup
+- name: unpack archive from master
+  unarchive:
+    src:  "{{ java_master_src }}"
+    dest: "{{ java_install_dir }}"
+    extra_opts: ["--strip-components=1"]
+    mode: "0644"
 
 - name: setup shell
   include: shell_config.yml
+  when: java_shell_profile
   tags: jdk_setup
