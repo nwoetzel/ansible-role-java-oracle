@@ -1,16 +1,14 @@
 ---
 - name: set download location on master for java tar file
-  connection: local
-  become: true
-  set_fact:
-    java_master_src: "{{ ansible_env.PWD }}/downloads/{{ java_file_tar }}"
+  local_action:
+    set_fact:
+      java_master_src: "{{ ansible_env.PWD }}/downloads/{{ java_file_tar }}"
 
 - name: Download jdk to ansilbe-master if we don't have it
-  connection: local
-  become: true
-  get_url:
-    url: "{{ java_download_url }}"
-    dest: "{{ java_master_src }}"
-    headers: "Cookie:oraclelicense=accept-securebackup-cookie"
-    force: no
+  local_action:
+    get_url:
+      url: "{{ java_download_url }}"
+      dest: "{{ java_master_src }}"
+      headers: "Cookie:oraclelicense=accept-securebackup-cookie"
+      force: no
   tags: jdk_master_download
