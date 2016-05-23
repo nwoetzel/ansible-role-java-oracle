@@ -11,4 +11,4 @@
   set_fact:
     java_install_dir:  "{{ java_install_dir  | default( '/home/' ~ ansible_user ~ '/sw/java/1.' ~ java_version ~ '.0_' ~ java_update ) }}"
     java_file_tar:     "{{ java_product }}-{{ java_version }}u{{ java_update ) }}-{{ java_os }}-{{ java_arch }}.tar.gz"
-    java_download_url: "{{ java.url }}/{{ java_version }}u{{ java_update }}-{{ java_build }}/{{ java_file_tar }}"
+    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-{{ java_build }}/{{ java_file_tar }}"
