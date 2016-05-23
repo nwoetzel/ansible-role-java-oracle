@@ -1,5 +1,5 @@
 ---
 - hosts: sample
-  ansible_user: root
+  remote_user: root
   roles:
     - ansible-role-jave-oracle
