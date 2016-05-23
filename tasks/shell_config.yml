@@ -1,7 +1,7 @@
 ---
 - name: add JAVA_HOME comment to shell profile
   lineinfile:
-    dest:        "/home/{{ ansible_user }}/.profile"
+    dest:        "{{ ansible_env.HOME }}/.profile"
     backup:      yes
     state:       present
     insertafter: EOF
@@ -10,7 +10,7 @@
 
 - name: add JAVA_HOME code to shell profile
   lineinfile:
-    dest:        "/home/{{ ansible_user }}/.profile"
+    dest:        "{{ ansible_env.HOME }}/.profile"
     backup:      yes
     state:       present
     insertafter: "^# set JAVA_HOME so.+$"
