@@ -6,7 +6,10 @@
     java_arch:        "{{ java_arch   | default( java_oracle_defaults.archmap[ansible_architecture] ) }}"
     java_os:          "{{ java_os     | default( java_oracle_defaults.osmap[ansible_system] ) }}"
     java_url:         "{{ java_oracle_defaults.versions[java_version].url }}"
-    java_file_tar:     "{{ java_product }}-{{ java_version }}u{{ java_update ) }}-{{ java_os }}-{{ java_arch }}.tar.gz"
+
+- name: set name of tar file
+  set_fact:
+    java_file_tar:    "{{ java_product }}-{{ java_version }}u{{ java_update }}-{{ java_os }}-{{ java_arch }}.tar.gz"
 
 - name: set java download url and install dir
   set_fact:
