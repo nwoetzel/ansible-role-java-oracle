@@ -4,7 +4,7 @@
     java_update:      "{{ java_udapte | default( java_oracle_defaults.versions[java_version].update ) }}"
     java_build:       "{{ java_build  | default( java_oracle_defaults.versions[java_version].build ) }}"
     java_arch:        "{{ java_arch   | default( java_oracle_defaults.archmap[ansible_architecture] ) }}"
-    java_os:          "{{ java_os     | default( jave_oracle_defaults.osmap[ansible_system] ) }}"
+    java_os:          "{{ java_os     | default( java_oracle_defaults.osmap[ansible_system] ) }}"
     java_url:         "{{ java_oracle_defaults.versions[java_version].url }}"
 
 - name: set java download url and install dir
