@@ -1,4 +1,7 @@
-## ansible-role-java-oracle
+Ansible role java-oracle
+========================
+
+[![Build Status](https://travis-ci.org/nwoetzel/ansible-role-java-oracle.svg?branch=master)](https://travis-ci.org/nwoetzel/ansible-role-java-oracle)
 
 This Ansible Eclipse role is for installing java oracle by downloading the tar and unpacking it into a software folder under the users home.
 It should work for either Debian or Ubuntu.
