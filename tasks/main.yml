@@ -7,15 +7,22 @@
   file:
     dest: "{{ java_install_dir }}"
     state: directory
-  when: jdk_download.changed
   tags: jdk_setup
+
+- name: set directory where the archive will be extracted to
+  set_fact:
+    java_unpack_dir:   "{{ java_install_dir ~ '/jdk1.' ~ java_version ~ '.0_' ~ java_update }}"
+
+- debug:
+    var: java_unpack_dir
 
 - name: unpack archive from master
   unarchive:
-    src:  "{{ java_master_src }}"
-    dest: "{{ java_install_dir }}"
-    extra_opts: ["--strip-components=1"]
-    mode: "0644"
+    src:     "{{ java_master_download_folder ~ '/' ~ java_file_tar }}"
+    dest:    "{{ java_install_dir }}"
+    creates: "{{ java_unpack_dir }}"
+#    extra_opts: ["--strip-components=1"]
+  tags: jdk_setup
 
 - name: setup shell
   include: shell_config.yml

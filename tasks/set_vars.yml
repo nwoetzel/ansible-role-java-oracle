@@ -1,7 +1,7 @@
 ---
 - name: set java vars from defaults or settings
   set_fact:
-    java_update:      "{{ java_udapte | default( java_oracle_defaults.versions[java_version].update ) }}"
+    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version]['update'] ) }}"
     java_build:       "{{ java_build  | default( java_oracle_defaults.versions[java_version].build ) }}"
     java_arch:        "{{ java_arch   | default( java_oracle_defaults.archmap[ansible_architecture] ) }}"
     java_os:          "{{ java_os     | default( java_oracle_defaults.osmap[ansible_system] ) }}"
@@ -13,5 +13,5 @@
 
 - name: set java download url and install dir
   set_fact:
-    java_install_dir:  "{{ java_install_dir  | default( '/home/' ~ ansible_user ~ '/sw/java/1.' ~ java_version ~ '.0_' ~ java_update ) }}"
-    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-{{ java_build }}/{{ java_file_tar }}"
+    java_install_dir:  "{{ java_install_dir  | default( '/home/' ~ ansible_user ~ '/sw/java' ) }}"
+    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-b{{ java_build }}/{{ java_file_tar }}"
