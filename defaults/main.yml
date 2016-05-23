@@ -12,13 +12,13 @@ java_version: 8
 java_shell_profile: true
 
 # optional to overwrite derived information; derived from ansible_system and known defaults
-# update using version defaults below
+# update using defaults from vars
 #java_update: 80
-# build using version defaults below
+# build using defaults from vars
 #java_build: b15
-# arch using ansible_architecture
+# arch using ansible_architecture and defaults from vars
 #java_arch: x86
-# os from ansible_system using ansible_system
+# os from ansible_system using ansible_system and defaults from vars
 #java_os: linux
 
 java_jdk_defaults:
@@ -37,7 +37,3 @@ java_jdk_defaults:
       url:    http://download.oracle.com/otn-pub/java/jdk
       build:  14
       update: 92
-
-  cur_dir: "{{ lookup('pipe','pwd') }}"
-  dir:
-    tmp: /tmp
