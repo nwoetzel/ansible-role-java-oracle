@@ -1,6 +1,6 @@
 ---
 - set_fact:
-    java_master_src: "{{ ansible_env['PWD'] }}/downloads/{{ java_file_tar }}"
+    java_master_src: "{{ ansible_env.PWD }}/downloads/{{ java_file_tar }}"
 
 - name: Download jdk to ansilbe-master if we don't have it
   connection: local
