@@ -6,9 +6,10 @@ cache: pip
 env:
   - SITE=sample.yml
 
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y curl
+addons:
+  apt:
+    packages:
+    - curl
 
 install:
   # Install Ansible.
