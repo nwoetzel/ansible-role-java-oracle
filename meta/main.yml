@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Nils Woetzel
+  description: Installer for java-oracle up to 1.8.
+  company: Heidelberg Institute for Theoretical Studies gGmbH, Heidelberg, Germany
+  license: GPL3
+  min_ansible_version: 2.1.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+    - oracle-java
+    - java
+    - jdk
