@@ -1,2 +1,2 @@
-[sample]
+[java]
 localhost ansible_connection=local
