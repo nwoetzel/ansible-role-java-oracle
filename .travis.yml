@@ -4,7 +4,10 @@ python: "2.7"
 cache: pip
 
 env:
-  - SITE=test.yml
+  - JAVA_PRODUCT=jre JAVA_VERSION=7
+  - JAVA_PRODUCT=jdk JAVA_VERSION=7
+  - JAVA_PRODUCT=jre JAVA_VERSION=8
+  - JAVA_PRODUCT=jdk JAVA_VERSION=8 
 
 addons:
   apt:
@@ -17,16 +20,17 @@ install:
 
 script:
   - "cd tests"
+  - EXTRA_VARS="java_product=${JAVA_PRODUCT} java_version=${JAVA_VERSION}"
 
   # check syntax
-  - "ansible-playbook -i inventory $SITE --syntax-check"
+  - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --syntax-check
 
   # run playbook
-  - "ansible-playbook -i inventory $SITE --connection=local --sudo"
+  - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local --sudo
 
   # run again to check if it is indempotent
   - >
-    ansible-playbook -i inventory $SITE --connection=local --sudo
+    ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)

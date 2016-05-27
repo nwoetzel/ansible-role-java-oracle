@@ -11,10 +11,7 @@
 
 - name: set directory where the archive will be extracted to
   set_fact:
-    java_unpack_dir:   "{{ java_install_dir ~ '/jdk1.' ~ java_version ~ '.0_' ~ java_update }}"
-
-- debug:
-    var: java_unpack_dir
+    java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '1.' ~ java_version ~ '.0_' ~ java_update }}"
 
 - name: unpack archive from master
   unarchive:

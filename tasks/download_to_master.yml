@@ -10,7 +10,7 @@
     dest: "{{ java_master_download_folder }}"
     state: directory
 
-- name: Download jdk to ansible-master if we don't have it
+- name: Download java to ansible-master if we don't have it
   local_action: get_url \
     url="{{ java_download_url }}" \
     dest="{{ java_master_download_folder ~ '/' ~ java_file_tar }}" \
