@@ -7,11 +7,11 @@ java_oracle_defaults:
   osmap:
     Linux: linux
   versions:
-    7:
+    "7":
       url:    http://download.oracle.com/otn-pub/java/jdk
       build:  15
       update: 80
-    8:
+    "8":
       url:    http://download.oracle.com/otn-pub/java/jdk
       build:  14
       update: 92
