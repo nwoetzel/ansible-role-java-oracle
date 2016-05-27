@@ -20,20 +20,3 @@ java_shell_profile: true
 #java_arch: x86
 # os from ansible_system using ansible_system and defaults from vars
 #java_os: linux
-
-java_jdk_defaults:
-  # using ansible_architecture
-  archmap:
-    x86_64: x64
-    i586:   i586
-  osmap:
-    Linux: linux
-  versions:
-    7:
-      url:    http://download.oracle.com/otn-pub/java/jdk
-      build:  15
-      update: 80
-    8:
-      url:    http://download.oracle.com/otn-pub/java/jdk
-      build:  14
-      update: 92
