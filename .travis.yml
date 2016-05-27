@@ -26,18 +26,18 @@ script:
   - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --syntax-check
 
   # run playbook
-  - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local --sudo
+  - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local
 
   # run again to check if it is indempotent
   - >
-    ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local --sudo
+    ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --connection=local
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
   # check that java is installed
   - >
-    which java
+    ${HOME}/sw/java/${JAVA_PRODUCT}1.${JAVA_VERSION}.0_*/bin/java -version
     && (echo 'Java is installed' && exit 0)
     || (echo 'Java is not installed' && exit 1)
 
