@@ -5,14 +5,23 @@
     backup:      yes
     state:       present
     insertafter: EOF
-    line:        "# set JAVA_HOME so it includes ansible install jdk"
-    regexp:      "^# set JAVA_HOME so.+$"
+    line:        '# set JAVA_HOME so it includes ansible install jdk'
+    regexp:      '^# set JAVA_HOME so.+$'
 
 - name: add JAVA_HOME code to shell profile
   lineinfile:
     dest:        "{{ ansible_env.HOME }}/.profile"
     backup:      yes
     state:       present
-    insertafter: "^# set JAVA_HOME so.+$"
-    line:        "if [ -d \"{{ java_unpack_dir }}\" ] ; then export JAVA_HOME=\"{{ java_unpack_dir }}\"; fi"
-    regexp: "^if.+ ; then export JAVA_HOME.+; fi$"
+    insertafter: '^# set JAVA_HOME so.+$'
+    line:        'if [ -d "{{ java_unpack_dir }}" ] ; then export JAVA_HOME="{{ java_unpack_dir }}"; fi'
+    regexp:      '^if.+ ; then export JAVA_HOME.+; fi$'
+
+- name: add JAVA_HOME/bin to PATH in shell profile
+  lineinfile:
+    dest:        "{{ ansible_env.HOME }}/.profile"
+    backup:      yes
+    state:       present
+    insertafter: '^if.+ ; then export JAVA_HOME.+; fi$'
+    line:        'export PATH="${PATH}:${JAVA_HOME}/bin"'
+    regexp:      '^export PATH="\${PATH}:\${JAVA_HOME}/bin"$'
