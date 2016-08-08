@@ -11,6 +11,9 @@ java_version: 8
 # set JAVA_HOME for shell
 java_shell_profile: true
 
+# when set, the package is downloaded to client
+#java_download_folder_remote: /tmp/ansible_download
+
 # optional to overwrite derived information; derived from ansible_system and known defaults
 # update using defaults from vars
 #java_update: 80

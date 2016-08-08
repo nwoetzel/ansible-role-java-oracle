@@ -1,0 +1,17 @@
+---
+- name: set download location on remote for java tar file
+  set_fact:
+    java_download_folder: "{{ java_download_folder_remote }}"
+
+- name: create downloads folder if it does not exist yet
+  file:
+    dest: "{{ java_download_folder }}"
+    state: directory
+
+- name: Download java to ansible-master if we don't have it
+  get_url:
+    url:     "{{ java_download_url }}"
+    dest:    "{{ java_download_folder ~ '/' ~ java_file_tar }}"
+    headers: "Cookie:oraclelicense=accept-securebackup-cookie"
+    force:   no
+  tags: java_remote_download

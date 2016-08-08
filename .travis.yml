@@ -8,6 +8,7 @@ env:
   - JAVA_PRODUCT=jdk JAVA_VERSION=7
   - JAVA_PRODUCT=jre JAVA_VERSION=8
   - JAVA_PRODUCT=jdk JAVA_VERSION=8 
+  - JAVA_PRODUCT=jre JAVA_VERSION=8 JAVA_DOWNLOAD_FOLDER_REMOTE=/tmp/ansible_download
 
 addons:
   apt:
@@ -21,6 +22,7 @@ install:
 script:
   - "cd tests"
   - EXTRA_VARS="java_product=${JAVA_PRODUCT} java_version=${JAVA_VERSION}"
+  - if [-z ${JAVA_DOWNLOAD_FOLDER_REMOTE}]; then EXTRA_VARS="${EXTRA_VARS} java_download_folder_remote=${JAVA_DOWNLOAD_FOLDER_REMOTE}"; fi
 
   # check syntax
   - ansible-playbook -i inventory test.yml --extra-vars="${EXTRA_VARS}" --syntax-check

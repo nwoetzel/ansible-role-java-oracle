@@ -2,6 +2,10 @@
 - include: set_vars.yml
 
 - include: download_to_master.yml
+  when: java_download_folder_remote is undefined 
+
+- include: download_to_remote.yml
+  when: java_download_folder_remote is defined
 
 - name: Create install directory
   file:
@@ -15,7 +19,8 @@
 
 - name: unpack archive from master
   unarchive:
-    src:     "{{ java_master_download_folder ~ '/' ~ java_file_tar }}"
+    copy:    "{{ (java_download_folder_remote is defined) | ternary(no,yes) }}"
+    src:     "{{ java_download_folder ~ '/' ~ java_file_tar }}"
     dest:    "{{ java_install_dir }}"
     creates: "{{ java_unpack_dir }}"
 #    extra_opts: ["--strip-components=1"]

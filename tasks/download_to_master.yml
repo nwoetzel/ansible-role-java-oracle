@@ -1,20 +1,20 @@
 ---
 - name: set download location on master for java tar file
   set_fact:
-    java_master_download_folder: "{{ ansible_env.PWD ~ '/downloads' }}"
+    java_download_folder: "{{ ansible_env.PWD ~ '/downloads' }}"
   delegate_to: local
   run_once: true
 
 - name: create downloads folder if it does not exist yet
   file:
-    dest: "{{ java_master_download_folder }}"
+    dest: "{{ java_download_folder }}"
     state: directory
 
 - name: Download java to ansible-master if we don't have it
   local_action: get_url \
     url="{{ java_download_url }}" \
-    dest="{{ java_master_download_folder ~ '/' ~ java_file_tar }}" \
+    dest="{{ java_download_folder ~ '/' ~ java_file_tar }}" \
     headers="Cookie:oraclelicense=accept-securebackup-cookie" \
     force=no
   run_once: true
-  tags: jdk_master_download
+  tags: java_master_download
