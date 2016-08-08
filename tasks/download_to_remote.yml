@@ -8,7 +8,7 @@
     dest: "{{ java_download_folder }}"
     state: directory
 
-- name: Download java to ansible-master if we don't have it
+- name: Download java to remote if we don't have it
   get_url:
     url:     "{{ java_download_url }}"
     dest:    "{{ java_download_folder ~ '/' ~ java_file_tar }}"
