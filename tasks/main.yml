@@ -19,7 +19,7 @@
 
 - name: unpack archive from master
   unarchive:
-    copy:    "{{ (java_download_folder_remote is defined) | ternary(no,yes) }}"
+    copy:    "{{ (java_download_folder_remote is defined) | ternary('no','yes') }}"
     src:     "{{ java_download_folder ~ '/' ~ java_file_tar }}"
     dest:    "{{ java_install_dir }}"
     creates: "{{ java_unpack_dir }}"
