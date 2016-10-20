@@ -16,7 +16,7 @@ java_shell_profile: true
 
 # optional to overwrite derived information; derived from ansible_system and known defaults
 # update using defaults from vars
-#java_update: 80
+#java_update: 111
 # build using defaults from vars
 #java_build: b15
 # arch using ansible_architecture and defaults from vars
