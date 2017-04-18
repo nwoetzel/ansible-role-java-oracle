@@ -11,7 +11,7 @@ By installing any version of this role you have accepted the [Oracle Binary Code
 
 ## Description
 
-This Ansible Eclipse role is for installing java oracle by downloading the tar and unpacking it into a software folder under the users home.
+This ansible role is for installing java oracle by downloading the tar and unpacking it into a software folder under the users home.
 It should work for either Debian or Ubuntu, it has been tested for Ubuntu only.
 It does not handle MacOS or Windows (yet).
 
