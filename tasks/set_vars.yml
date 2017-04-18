@@ -1,17 +1,38 @@
 ---
 - name: set java vars from defaults or settings
   set_fact:
-    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version|int]['update'] ) }}"
     java_build:       "{{ java_build  | default( java_oracle_defaults.versions[java_version|int].build ) }}"
     java_arch:        "{{ java_arch   | default( java_oracle_defaults.archmap[ansible_architecture] ) }}"
     java_os:          "{{ java_os     | default( java_oracle_defaults.osmap[ansible_system] ) }}"
     java_url:         "{{ java_oracle_defaults.versions[java_version|int].url }}"
+    java_url_subpath: "{{ java_oracle_defaults.versions[java_version|int].url_subpath | default( '' ) }}"
+    java_early_access: "{{ java_oracle_defaults.versions[java_version|int].early_access | default( false ) }}"
+
+- name: set java update from defaults or settings
+  set_fact:
+    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version|int].update ) }}"
+  when: not java_early_access
 
 - name: set name of tar file
   set_fact:
     java_file_tar:    "{{ java_product }}-{{ java_version }}u{{ java_update }}-{{ java_os }}-{{ java_arch }}.tar.gz"
+  when: not java_early_access
+
+- name: set name of tar file for early access
+  set_fact:
+    java_file_tar:    "{{ java_product }}-{{ java_version }}-ea+{{ java_build }}_{{ java_os }}-{{ java_arch }}_bin.tar.gz"
+  when: java_early_access
+
+- name: set java download url
+  set_fact:
+    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-b{{ java_build }}/{{ java_url_subpath }}{{ java_file_tar }}"
+  when: not java_early_access
+
+- name: set java download url for early access
+  set_fact:
+    java_download_url: "{{ java_url }}{{ java_version }}/archive/{{ java_build }}/binaries/{{ java_url_subpath }}{{ java_file_tar }}"
+  when: java_early_access
 
 - name: set java download url and install dir
   set_fact:
     java_install_dir:  "{{ java_install_dir | default( ansible_env.HOME ~ '/sw/java' ) }}"
-    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-b{{ java_build }}/{{ java_file_tar }}"

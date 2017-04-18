@@ -16,6 +16,12 @@
 - name: set directory where the archive will be extracted to
   set_fact:
     java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '1.' ~ java_version ~ '.0_' ~ java_update }}"
+  when: not java_early_access
+
+- name: set directory where the archive will be extracted to for early access
+  set_fact:
+    java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '-' ~ java_version }}"
+  when: java_early_access
 
 - name: unpack archive from master
   unarchive:

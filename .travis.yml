@@ -9,6 +9,8 @@ env:
   - JAVA_PRODUCT=jre JAVA_VERSION=8
   - JAVA_PRODUCT=jdk JAVA_VERSION=8 
   - JAVA_PRODUCT=jre JAVA_VERSION=8 JAVA_DOWNLOAD_FOLDER_REMOTE=/tmp/ansible_download
+  - JAVA_PRODUCT=jre JAVA_VERSION=9
+  - JAVA_PRODUCT=jdk JAVA_VERSION=9
 
 addons:
   apt:
@@ -39,7 +41,7 @@ script:
 
   # check that java is installed
   - >
-    ${HOME}/sw/java/${JAVA_PRODUCT}1.${JAVA_VERSION}.0_*/bin/java -version
+    ${HOME}/sw/java/${JAVA_PRODUCT}*${JAVA_VERSION}*/bin/java -version
     && (echo 'Java is installed' && exit 0)
     || (echo 'Java is not installed' && exit 1)
 
