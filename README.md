@@ -3,9 +3,13 @@ Ansible role java-oracle
 
 [![Build Status](https://travis-ci.org/nwoetzel/ansible-role-java-oracle.svg?branch=master)](https://travis-ci.org/nwoetzel/ansible-role-java-oracle)
 
-An [Ansible](http://www.ansible.com) role to install the  Oracle Java Development Kit or Java Runtime Environment.
+An [Ansible](http://www.ansible.com) role to install the  Oracle Java Development Kit or Java Runtime Environment. 7, [8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and [9 early-access](https://jdk9.java.net/download/) are supported.
 
-DISCLAIMER: By installing any version of this role you have accepted the [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html).
+## DISCLAIMER
+
+By installing any version of this role you have accepted the [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html) and the [Early Adopter Development License Agreement for Java SE](http://www.oracle.com/technetwork/licenses/ea-license-noexhibits-1938914.html).
+
+## Description
 
 This Ansible Eclipse role is for installing java oracle by downloading the tar and unpacking it into a software folder under the users home.
 It should work for either Debian or Ubuntu, it has been tested for Ubuntu only.
@@ -14,6 +18,7 @@ It does not handle MacOS or Windows (yet).
 For all settings, look into the defaults folder.
 
 ## Dependencies
+
 - ansible >= 2
 
 ## Role Variables
