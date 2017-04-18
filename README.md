@@ -39,6 +39,7 @@ All defaults are documented also in the [defaults](defaults/main.yml) file.
 ## Facts
 
 | variable | description |
+|---:|:---|
 | java_install_dir | the installation directory used for e.g. JAVA_HOME |
 
 ## License
