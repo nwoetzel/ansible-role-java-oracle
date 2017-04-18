@@ -10,7 +10,7 @@
 
 - name: set java update from defaults or settings
   set_fact:
-    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version|int].update ) }}"
+    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version|int]['update'] ) }}" # cannot use .update, since it is a built-in function of python dict
   when: not java_early_access
 
 - name: set name of tar file
