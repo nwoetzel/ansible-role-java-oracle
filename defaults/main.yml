@@ -5,7 +5,7 @@
 
 # one of jre or jdk
 java_product: jdk
-# version one of 7,8,9
+# version one of 8,9
 java_version: 8
 
 # set JAVA_HOME for shell
