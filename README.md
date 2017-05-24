@@ -3,7 +3,7 @@ Ansible role java-oracle
 
 [![Build Status](https://travis-ci.org/nwoetzel/ansible-role-java-oracle.svg?branch=master)](https://travis-ci.org/nwoetzel/ansible-role-java-oracle)
 
-An [Ansible](http://www.ansible.com) role to install the  Oracle Java Development Kit or Java Runtime Environment. 7, [8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and [9 early-access](https://jdk9.java.net/download/) are supported.
+An [Ansible](http://www.ansible.com) role to install the  Oracle Java Development Kit or Java Runtime Environment. [8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and [9 early-access](https://jdk9.java.net/download/) are supported.
 
 ## DISCLAIMER
 
