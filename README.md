@@ -30,6 +30,7 @@ All defaults are documented also in the [defaults](defaults/main.yml) file.
 | java_product | yes | - | one of jre or jdk |
 | java_version | yes | - | 7,8 (9 in the future) |
 | java_shell_profile | no | false | add the JAVA_HOME with installation path to the user's shell profile? |
+| java_oracle_profile_file | no | .profile | name of the sheel profile file, e.g. .bash_profile |
 | java_download_folder_remote | no | - | when set, the file is downloaded to the installation host |
 | java_update | no | set by this [role](vars/main.yml) | The latest update version defined in that role is used. If this is not up to date (newer is required), or an older version is desired, set this. |
 | java_build | no | set by this [role](vars/main.yml) | e.g. b15, is usually part of the filename to download |

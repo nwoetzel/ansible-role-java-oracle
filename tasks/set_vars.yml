@@ -20,7 +20,7 @@
 
 - name: set name of tar file for early access
   set_fact:
-    java_file_tar:    "{{ java_product }}-{{ java_version }}-ea+{{ java_build }}_{{ java_os }}-{{ java_arch }}_bin.tar.gz"
+    java_file_tar:    "{{ java_product }}-{{ java_version }}+{{ java_build }}_{{ java_os }}-{{ java_arch }}_bin.tar.gz"
   when: java_early_access
 
 - name: set java download url
@@ -36,3 +36,7 @@
 - name: set java download url and install dir
   set_fact:
     java_install_dir:  "{{ java_install_dir | default( ansible_env.HOME ~ '/sw/java' ) }}"
+
+- name: set .profile path
+  set_fact:
+    java_oracle_profile_path: "{{ ansible_env.HOME ~ '/' ~ java_oracle_profile_file }}"

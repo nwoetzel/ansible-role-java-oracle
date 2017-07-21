@@ -10,6 +10,8 @@ java_version: 8
 
 # set JAVA_HOME for shell
 java_shell_profile: true
+# name of bash profile file, e.g. CentOS 6 uses ".bash_profile"
+java_oracle_profile_file: ".profile"
 
 # when set, the package is downloaded to client
 #java_download_folder_remote: /tmp/ansible_download
