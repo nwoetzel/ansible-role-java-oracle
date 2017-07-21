@@ -3,10 +3,17 @@
   set_fact:
     java_download_folder: "{{ java_download_folder_remote }}"
 
-- name: create downloads folder if it does not exist yet
+- name: get stat for download location
+  stat:
+    path: "{{ java_download_folder }}"
+  register: java_download_folder_stat
+
+- name: create download folder if it does not exist yet
   file:
     dest: "{{ java_download_folder }}"
     state: directory
+  when: not ( java_download_folder_stat.isdir is defined and java_download_folder_stat.isdir ) and
+        not ( java_download_folder_stat.islnk is defined and java_download_folder_stat.islnk )
 
 - name: Download java to remote if we don't have it
   get_url:
