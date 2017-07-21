@@ -12,8 +12,8 @@
   file:
     dest: "{{ java_download_folder }}"
     state: directory
-  when: not ( java_download_folder_stat.isdir is defined and java_download_folder_stat.isdir ) and
-        not ( java_download_folder_stat.islnk is defined and java_download_folder_stat.islnk )
+  when: not ( java_download_folder_stat.stat.isdir is defined and java_download_folder_stat.stat.isdir ) and
+        not ( java_download_folder_stat.stat.islnk is defined and java_download_folder_stat.stat.islnk )
 
 - name: Download java to remote if we don't have it
   get_url:
