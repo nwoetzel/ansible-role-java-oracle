@@ -32,6 +32,10 @@
 #    extra_opts: ["--strip-components=1"]
   tags: jdk_setup
 
+- name: install jce_policy
+  include: jce_policy.yml
+  when: (java_version|int == 8) and (java_oracle_jce_policy)
+
 - name: setup shell
   include: shell_config.yml
   when: java_shell_profile

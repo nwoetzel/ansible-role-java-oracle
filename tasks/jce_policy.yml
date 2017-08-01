@@ -1,0 +1,23 @@
+---
+- name: unpack jce_policy
+  unarchive:
+    copy:    "{{ (java_download_folder_remote is defined) | ternary('no','yes') }}"
+    src:     "{{ java_download_folder ~ '/' ~ java_oracle_jce_policy_file }}"
+    dest:    "/tmp/"
+    creates: "/tmp/UnlimitedJCEPolicyJDK8/local_policy.jar"
+
+- name: install unzip
+  become: yes
+  apt:
+    name: unzip
+    state: present
+  when: ansible_distribution == "Debian"
+
+- name: copy jce_policy
+  copy:
+    src: "/tmp/UnlimitedJCEPolicyJDK8/{{ item }}"
+    dest: "{{ java_unpack_dir ~ '/lib/security/' ~ item }}"
+  with_items:
+    - local_policy.jar
+    - README.txt
+    - US_export_policy.jar

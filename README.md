@@ -29,6 +29,7 @@ All defaults are documented also in the [defaults](defaults/main.yml) file.
 |--:|:-:|:-:|:--|
 | java_product | yes | - | one of jre or jdk |
 | java_version | yes | - | 7,8 (9 in the future) |
+| java_oracle_jce_policy | yes | no | install the java jce policy for java version 8 |
 | java_shell_profile | no | false | add the JAVA_HOME with installation path to the user's shell profile? |
 | java_oracle_profile_file | no | .profile | name of the sheel profile file, e.g. .bash_profile |
 | java_download_folder_remote | no | - | when set, the file is downloaded to the installation host |
