@@ -18,3 +18,11 @@
     force=no
   run_once: true
   tags: java_master_download
+
+- name: download jce_policy to ansible-master if we don't have it
+  local_action: get_url \
+    url="{{ java_oracle_jce_policy_url }}" \
+    dest="{{ java_download_folder ~ '/' ~ java_oracle_jce_policy_file }}" \
+    headers="Cookie:oraclelicense=accept-securebackup-cookie" \
+    force=no
+  when: (java_version|int == 8) and (java_oracle_jce_policy)

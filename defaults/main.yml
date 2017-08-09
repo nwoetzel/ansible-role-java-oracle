@@ -8,6 +8,9 @@ java_product: jdk
 # version one of 8,9
 java_version: 8
 
+#install jce_policy: https://stackoverflow.com/a/38264878
+java_oracle_jce_policy: no
+
 # set JAVA_HOME for shell
 java_shell_profile: true
 # name of bash profile file, e.g. CentOS 6 uses ".bash_profile"

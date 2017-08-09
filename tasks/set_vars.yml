@@ -37,6 +37,12 @@
   set_fact:
     java_install_dir:  "{{ java_install_dir | default( ansible_env.HOME ~ '/sw/java' ) }}"
 
+- name: set jce8 download url
+  set_fact:
+    java_oracle_jce_policy_url: "{{ java_oracle_defaults.versions[java_version|int].jce_policy.url ~ java_oracle_defaults.versions[java_version|int].jce_policy.zip }}"
+    java_oracle_jce_policy_file: "{{ java_oracle_defaults.versions[java_version|int].jce_policy.zip }}"
+  when: (java_version|int == 8) and (java_oracle_jce_policy)
+
 - name: set .profile path
   set_fact:
     java_oracle_profile_path: "{{ ansible_env.HOME ~ '/' ~ java_oracle_profile_file }}"
