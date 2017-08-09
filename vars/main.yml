@@ -9,10 +9,10 @@ java_oracle_defaults:
   versions:
     8:
       url:    http://download.oracle.com/otn-pub/java/jdk
-      build:  11
-      update: 131
-      url_subpath: d54c1d3a095b4ff2b6607d096fa80163/
+      build:  01
+      update: 144
+      url_subpath: 090f390dda5b47b9b721c7dfaa008135/
     9:
       url:    http://download.java.net/java/jdk
-      build:  178
+      build:  181
       early_access: true
