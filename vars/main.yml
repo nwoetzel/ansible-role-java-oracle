@@ -9,9 +9,9 @@ java_oracle_defaults:
   versions:
     8:
       url:    http://download.oracle.com/otn-pub/java/jdk
-      build:  "01"
+      build:  "12"
       update: 151
-      url_subpath: 090f390dda5b47b9b721c7dfaa008135/
+      url_subpath: e758a0de34e24606bca991d704f6dcbf/
       jce_policy:
         url: http://download.oracle.com/otn-pub/java/jce/8/
         zip: jce_policy-8.zip
