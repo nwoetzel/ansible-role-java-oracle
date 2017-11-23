@@ -16,12 +16,12 @@
 - name: set directory where the archive will be extracted to for java 8
   set_fact:
     java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '1.' ~ java_version ~ '.0_' ~ java_update }}"
-  when: not java_full_version
+  when: java_full_version is undefined
 
 - name: set directory where the archive will be extracted to for java_9
   set_fact:
     java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '-' ~ java_full_version }}"
-  when: java_full_version
+  when: java_full_version is defined
 
 - name: unpack archive from master
   unarchive:
