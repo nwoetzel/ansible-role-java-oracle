@@ -1,0 +1,17 @@
+---
+- name: set java vars from defaults or settings
+  set_fact:
+    java_build:       "{{ java_build  | default( java_oracle_defaults.versions[java_version|int].build ) }}"
+    java_url:         "{{ java_oracle_defaults.versions[java_version|int].url }}"
+    java_url_subpath: "{{ java_oracle_defaults.versions[java_version|int].url_subpath | default( '' ) }}"
+    java_early_access: "{{ java_oracle_defaults.versions[java_version|int].early_access | default( false ) }}"
+    java_full_version: "{{ java_oracle_defaults.versions[java_version|int].full_version }}"
+
+#http://download.oracle.com/otn-pub/java/jdk/9.0.1+11/jdk-9.0.1_linux-x64_bin.tar.gz
+- name: set name of tar file for 9
+  set_fact:
+    java_file_tar:    "{{ java_product }}-{{ java_full_version }}_{{ java_os }}-{{ java_arch }}_bin.tar.gz"
+
+- name: set java download url for 9
+  set_fact:
+    java_download_url: "{{ java_url }}/{{ java_full_version }}+{{ java_build }}/{{ java_url_subpath }}{{ java_file_tar }}"

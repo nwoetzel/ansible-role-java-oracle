@@ -16,6 +16,7 @@ java_oracle_defaults:
         url: http://download.oracle.com/otn-pub/java/jce/8/
         zip: jce_policy-8.zip
     9:
-      url:    http://download.java.net/java/jdk
-      build:  181
-      early_access: true
+      url: http://download.oracle.com/otn-pub/java/jdk
+      full_version: "9.0.1"
+      build: "11"
+             #http://download.oracle.com/otn-pub/java/jdk/9.0.1+11/jdk-9.0.1_linux-x64_bin.tar.gz

@@ -1,0 +1,24 @@
+---
+- name: set java vars from defaults or settings
+  set_fact:
+    java_build:       "{{ java_build  | default( java_oracle_defaults.versions[java_version|int].build ) }}"
+    java_url:         "{{ java_oracle_defaults.versions[java_version|int].url }}"
+    java_url_subpath: "{{ java_oracle_defaults.versions[java_version|int].url_subpath | default( '' ) }}"
+
+- name: set java update from defaults or settings
+  set_fact:
+    java_update:      "{{ java_update | default( java_oracle_defaults.versions[java_version|int]['update'] ) }}" # cannot use .update, since it is a built-in function of python dict
+
+- name: set name of tar file
+  set_fact:
+    java_file_tar:    "{{ java_product }}-{{ java_version }}u{{ java_update }}-{{ java_os }}-{{ java_arch }}.tar.gz"
+
+- name: set java download url
+  set_fact:
+    java_download_url: "{{ java_url }}/{{ java_version }}u{{ java_update }}-b{{ java_build }}/{{ java_url_subpath }}{{ java_file_tar }}"
+
+- name: set jce8 download url
+  set_fact:
+    java_oracle_jce_policy_url: "{{ java_oracle_defaults.versions[java_version|int].jce_policy.url ~ java_oracle_defaults.versions[java_version|int].jce_policy.zip }}"
+    java_oracle_jce_policy_file: "{{ java_oracle_defaults.versions[java_version|int].jce_policy.zip }}"
+  when: (java_version|int == 8) and (java_oracle_jce_policy)
