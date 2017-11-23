@@ -13,15 +13,15 @@
     state: directory
   tags: jdk_setup
 
-- name: set directory where the archive will be extracted to
+- name: set directory where the archive will be extracted to for java 8
   set_fact:
     java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '1.' ~ java_version ~ '.0_' ~ java_update }}"
-  when: not java_early_access
+  when: not java_full_version
 
-- name: set directory where the archive will be extracted to for early access
+- name: set directory where the archive will be extracted to for java_9
   set_fact:
-    java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '-' ~ java_version }}"
-  when: java_early_access
+    java_unpack_dir:   "{{ java_install_dir ~ '/' ~ java_product ~ '-' ~ java_full_version }}"
+  when: java_full_version
 
 - name: unpack archive from master
   unarchive:
