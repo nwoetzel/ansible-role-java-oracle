@@ -17,6 +17,7 @@ java_oracle_defaults:
         zip: jce_policy-8.zip
     9:
       url: http://download.oracle.com/otn-pub/java/jdk
-      full_version: "9.0.1"
+      full_version: "9.0.4"
       build: "11"
-             #http://download.oracle.com/otn-pub/java/jdk/9.0.1+11/jdk-9.0.1_linux-x64_bin.tar.gz
+      url_subpath: c2514751926b4512b076cc82f959763f/
+        #http://download.oracle.com/otn-pub/java/jdk/9.0.4+11/c2514751926b4512b076cc82f959763f/jre-9.0.4_linux-x64_bin.tar.gz
