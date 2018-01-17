@@ -10,14 +10,15 @@ java_oracle_defaults:
     8:
       url:    http://download.oracle.com/otn-pub/java/jdk
       build:  "12"
-      update: 151
-      url_subpath: e758a0de34e24606bca991d704f6dcbf/
+      update: 161
+      url_subpath: 2f38c3b165be4555a1fa6e98c45e0808/
       jce_policy:
         url: http://download.oracle.com/otn-pub/java/jce/8/
         zip: jce_policy-8.zip
+      #http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
     9:
       url: http://download.oracle.com/otn-pub/java/jdk
       full_version: "9.0.4"
       build: "11"
       url_subpath: c2514751926b4512b076cc82f959763f/
-        #http://download.oracle.com/otn-pub/java/jdk/9.0.4+11/c2514751926b4512b076cc82f959763f/jre-9.0.4_linux-x64_bin.tar.gz
+      #http://download.oracle.com/otn-pub/java/jdk/9.0.4+11/c2514751926b4512b076cc82f959763f/jre-9.0.4_linux-x64_bin.tar.gz
