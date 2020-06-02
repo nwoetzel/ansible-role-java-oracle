@@ -7,6 +7,9 @@ An [Ansible](http://www.ansible.com) role to install the  Oracle Java Developmen
 
 ## DISCLAIMER
 
+I DO NOT RECOMMEND TO USE THIS ANSIBLE ROLE ANYMORE!
+For my current projects, I use [geerlingguy.java](https://galaxy.ansible.com/geerlingguy/java) which suits pretty much all of my needs.
+
 By installing any version of this role you have accepted the [Oracle Binary Code License Agreement for Java SE](http://www.oracle.com/technetwork/java/javase/terms/license/index.html) and the [Early Adopter Development License Agreement for Java SE](http://www.oracle.com/technetwork/licenses/ea-license-noexhibits-1938914.html).
 
 ## Description
